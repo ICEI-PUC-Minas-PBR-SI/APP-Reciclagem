@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# Aplicativo de Reciclagem
 
-`CURSO`
+Sistemas de Informação
 
-`DISCIPLINA`
+Trabalho Interdisciplinar: Aplicações para Sustentabilidade
 
-`SEMESTRE`
+5º Semestre
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O aplicativo de reciclagem que planejamos criar, tem o objetivo de incetivar comunidades a reciclar, oferecendo informações e ferramentas para facilitar a reciclagem de itens dos nossos usuários. Nosso objetivo é que esse aplicativo tenha a capacidade de se tornar um intermediario entre locais de reciclagem e pessosas querendo oferecer itens para reciclar.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Eduardo Felipe Pinheiro Cruz
+* Ellen Campos Martins
+* Guilherme Henrique Silva
+* João Augusto Mendes Pereira
+* Lorena Beatriz Gomes
+* Taina de Oliveira Souza
 
 ## Orientador
 
-* Nome completo do professor 1
+* Cleia Marcia Gomes Amaral
 
 ## Instruções de utilização
 
