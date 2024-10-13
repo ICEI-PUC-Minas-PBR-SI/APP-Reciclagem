@@ -13,3 +13,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  profile_id    Int      @map("PERFIL_ID") @db.UnsignedInt()
+  full_name     String   @db.VarChar(100)
+  email         String   @db.VarChar(100)
+  username      String   @db.VarChar(100)
+  birth_date    String   @db.VarChar(100)
+  district      String   @db.VarChar(100)
+  number        Int
+  complement    String?  @db.VarChar(20)
+  phone         String   @db.VarChar(20)
+  status        Boolean  @default(true)
+
+  profile       Profile  @relation(fields: [profile_id], references: [id])
+
+  @@map(name: "users")
+}
+
+model Profile {
+  id       Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  name     String   @db.VarChar(100)
+  label    String   @db.VarChar(40)
+  is_admin Boolean  @default(false)
+  status   Boolean  @default(true)
+
+  users    User[]
+
+  @@map(name: "perfil")
+}
+
