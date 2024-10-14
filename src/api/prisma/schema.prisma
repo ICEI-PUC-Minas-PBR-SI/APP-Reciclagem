@@ -19,6 +19,7 @@ model User {
   full_name     String   @db.VarChar(100)
   email         String   @db.VarChar(100) @unique
   username      String   @db.VarChar(100) @unique
+  password      String   @db.VarChar(255)
   birth_date    DateTime? @map("birth_date") @db.Date
   district      String   @db.VarChar(100)
   number        Int
