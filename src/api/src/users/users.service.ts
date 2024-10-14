@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 // import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './users.repository';
 import { ProfileRepository } from 'src/profile/profile.repository';
+import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -37,12 +38,18 @@ export class UsersService {
     }
   }
 
-  async verifyEmailDuplicity(email: string) {
-    const emailExists = await this.userRepository.findByEmail(email);
+  async verifyEmailDuplicity(email: string): Promise<UserEntity> {
+    const emailExists = await this.findByEmail(email);
 
     if (emailExists) {
       throw new BadRequestException('Email already exists.');
     }
+
+    return emailExists;
+  }
+
+  async findByEmail(email: string): Promise<UserEntity> {
+    return await this.userRepository.findByEmail(email);
   }
 
   // findAll() {

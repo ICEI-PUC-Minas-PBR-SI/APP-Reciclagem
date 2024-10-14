@@ -9,5 +9,6 @@ import { ProfileModule } from 'src/profile/profile.module';
   imports: [ProfileModule],
   controllers: [UsersController],
   providers: [UsersService, PrismaService, UsersRepository],
+  exports: [UsersService],
 })
 export class UsersModule {}

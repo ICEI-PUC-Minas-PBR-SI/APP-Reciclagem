@@ -7,6 +7,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  MinLength,
 } from 'class-validator';
 import { Profiles } from '../entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
@@ -95,4 +96,13 @@ export class CreateUserDto {
   })
   @IsBoolean()
   status: boolean;
+
+  @ApiProperty({
+    type: String,
+    required: true,
+  })
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(6)
+  password: string;
 }

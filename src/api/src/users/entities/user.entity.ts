@@ -18,4 +18,5 @@ export class UserEntity implements User {
   complement: string;
   phone: string;
   status: boolean;
+  password: string;
 }
