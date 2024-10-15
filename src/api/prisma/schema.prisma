@@ -13,6 +13,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum typeItems {
+  Rciclavel
+  Resisuo
+}
+
+enum categoryItems {
+  Papel
+  Plastico
+  Vidro
+  Oleo
+  Metal
+  Baterias
+}
+
 model User {
   id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
   profile_id    Int      @map("PERFIL_ID") @db.UnsignedInt()
@@ -28,6 +42,9 @@ model User {
   status        Boolean  @default(true)
 
   profile       Profile  @relation(fields: [profile_id], references: [id])
+  items Items[]
+  Record_Collection Record_Collection[]
+  Register_Items_Reciclados Register_Items_Reciclados[]
 
   @@map(name: "users")
 }
@@ -43,4 +60,55 @@ model Profile {
 
   @@map(name: "perfil")
 }
+model Establishment {
+  id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  name          String?   @db.VarChar(100)
+  district      String   @db.VarChar(100)
+  neighborhood  String   @db.VarChar(100)
+  number        Int
+  phone         String   @db.VarChar(20)
+  product       Boolean  @default(true)
+  score         Boolean?  @default(true)
+  
+  @@map(name: "Establishment")
+  Record_Collection Record_Collection[]
+}
 
+model Items {
+  id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  name          String?   @db.VarChar(100)
+  type          typeItems
+  category      categoryItems
+  userId        Int @map("USER_ID") @db.UnsignedInt()
+
+  user       User  @relation(fields: [userId], references: [id])
+
+  @@map(name: "items")
+  Register_Items_Reciclados Register_Items_Reciclados[]
+}
+
+model Record_Collection {
+  id                     Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  EstablishmentId        Int @map("EstablishmentId_ID") @db.UnsignedInt()
+  userId                 Int @map("USER_ID") @db.UnsignedInt()
+  material               String?   @db.VarChar(100)
+  Measurement_Unit       String?   @db.VarChar(100)
+  Collection_Date        DateTime? @map("birth_date") @db.Date
+  
+  Establishment       Establishment  @relation(fields: [EstablishmentId], references: [id])
+  user                User  @relation(fields: [userId], references: [id])
+
+  @@map(name: "Record_Collection")
+}
+
+model Register_Items_Reciclados {
+  id                    Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  ItemsId               Int @map("ITEMS_ID") @db.UnsignedInt()
+  userId                Int @map("USER_ID") @db.UnsignedInt()
+  Record_Date           DateTime? @map("birth_date") @db.Date
+
+  Items       Items  @relation(fields: [ItemsId], references: [id])
+  user       User  @relation(fields: [userId], references: [id])
+
+  @@map(name: "ReRegister_Items_Reciclados")
+}
