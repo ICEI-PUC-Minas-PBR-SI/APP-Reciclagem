@@ -42,7 +42,6 @@ model User {
   status        Boolean  @default(true)
 
   profile       Profile  @relation(fields: [profile_id], references: [id])
-  items Items[]
   Record_Collection Record_Collection[]
   Register_Items_Reciclados Register_Items_Reciclados[]
 
@@ -72,6 +71,7 @@ model Establishment {
   
   @@map(name: "Establishment")
   Record_Collection Record_Collection[]
+  Items Items[]
 }
 
 model Items {
@@ -79,9 +79,9 @@ model Items {
   name          String?   @db.VarChar(100)
   type          typeItems
   category      categoryItems
-  userId        Int @map("USER_ID") @db.UnsignedInt()
+  EstablishmentId        Int @map("EstablishmentId_ID") @db.UnsignedInt()
 
-  user       User  @relation(fields: [userId], references: [id])
+  Establishment       Establishment  @relation(fields: [EstablishmentId], references: [id])
 
   @@map(name: "items")
   Register_Items_Reciclados Register_Items_Reciclados[]
