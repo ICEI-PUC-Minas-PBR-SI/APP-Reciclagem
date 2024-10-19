@@ -22,8 +22,22 @@ export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Post()
-  create(@Body() createItemDto: CreateItemDto) {
-    return this.itemsService.create(createItemDto);
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: ItemResponseDto,
+  })
+  create(@Body() data: CreateItemDto): Promise<ItemResponseDto> {
+    return this.itemsService
+      .create(data)
+      .then(item => {
+        return item;
+      })
+      .catch(error => {
+        throw new HttpException(
+          error.message,
+          error.status || HttpStatus.BAD_REQUEST,
+        );
+      });
   }
 
   @Get()
@@ -41,17 +55,58 @@ export class ItemsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.itemsService.findOne(+id);
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: ItemResponseDto,
+  })
+  getById(@Param('id') id: number): Promise<ItemResponseDto> {
+    return this.itemsService
+      .getById(id)
+      .then(item => {
+        return item;
+      })
+      .catch(error => {
+        throw new HttpException(
+          error.message,
+          error.status || HttpStatus.NOT_FOUND,
+        );
+      });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateItemDto: UpdateItemDto) {
-    return this.itemsService.update(+id, updateItemDto);
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: ItemResponseDto,
+  })
+  update(
+    @Param('id') id: number,
+    @Body() updateItemDto: UpdateItemDto,
+  ): Promise<ItemResponseDto> {
+    return this.itemsService
+      .update(id, updateItemDto)
+      .then(updatedItem => {
+        return updatedItem;
+      })
+      .catch(error => {
+        throw new HttpException(
+          error.message,
+          error.status || HttpStatus.BAD_REQUEST,
+        );
+      });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.itemsService.remove(+id);
+  remove(@Param('id') id: number): Promise<{ success: boolean }> {
+    return this.itemsService
+      .remove(+id)
+      .then(() => {
+        return { success: true };
+      })
+      .catch(error => {
+        throw new HttpException(
+          error.message,
+          error.status || HttpStatus.BAD_REQUEST,
+        );
+      });
   }
 }

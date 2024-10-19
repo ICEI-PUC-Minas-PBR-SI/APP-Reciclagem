@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { categoryItems, TypeItems } from '../entities/item.entity';
 
 export class CreateItemDto {
@@ -7,7 +7,7 @@ export class CreateItemDto {
     type: Number,
     required: true,
   })
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   EstablishmentId: number;
 
@@ -26,6 +26,7 @@ export class CreateItemDto {
   })
   @IsString()
   @IsNotEmpty()
+  @IsEnum(TypeItems)
   type: TypeItems;
 
   @ApiProperty({
@@ -35,5 +36,6 @@ export class CreateItemDto {
   })
   @IsString()
   @IsNotEmpty()
+  @IsEnum(categoryItems)
   category: categoryItems;
 }
