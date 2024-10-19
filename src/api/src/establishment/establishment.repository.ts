@@ -20,4 +20,12 @@ export class EstablishmentRepository {
       },
     });
   }
+
+  async getById(id: number): Promise<EstablishmentEntity | undefined> {
+    const establishment = await this.prisma.establishment.findUnique({
+      where: { id },
+    });
+
+    return establishment as EstablishmentEntity;
+  }
 }
