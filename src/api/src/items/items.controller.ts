@@ -13,7 +13,7 @@ import {
 import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { ItemResponseDto } from './dto/item.response.dto';
 import { FilterItemDto } from './dto/filter-item.dto';
 
@@ -38,6 +38,21 @@ export class ItemsController {
           error.status || HttpStatus.BAD_REQUEST,
         );
       });
+  }
+
+  @Get('search')
+  @ApiQuery({ name: 'name', required: true })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: [ItemResponseDto],
+  })
+  async searchByName(@Query('name') name: string): Promise<ItemResponseDto[]> {
+    return this.itemsService.searchByName(name).catch(error => {
+      throw new HttpException(
+        error.message,
+        error.status || HttpStatus.BAD_REQUEST,
+      );
+    });
   }
 
   @Get()

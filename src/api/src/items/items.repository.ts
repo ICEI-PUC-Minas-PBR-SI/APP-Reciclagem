@@ -75,4 +75,14 @@ export class ItemsRepository {
 
     return this.mapPrismaItemToEntity(updatedItem);
   }
+
+  async searchByName(name: string): Promise<ItemResponseDto[]> {
+    const items = await this.prisma.items.findMany({
+      where: {
+        name,
+      },
+    });
+
+    return items.map(item => this.mapPrismaItemToEntity(item));
+  }
 }
