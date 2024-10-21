@@ -1,19 +1,22 @@
-import { Link, useLocation } from 'react-router-dom';
-import { HeaderContainer, Logo, Nav, NavLink, BackButton } from './styled';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { HeaderContainer, Logo, BackButton } from './styled';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate(); 
   const isHome = location.pathname === '/home';
+
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
 
   return (
     <HeaderContainer>
       {!isHome && (
-        <Link to="/home">
-          <BackButton>
-            <FaArrowLeft />
-          </BackButton>
-        </Link>
+        <BackButton onClick={handleBackClick}>
+          <FaArrowLeft />
+        </BackButton>
       )}
       <Logo>Recicla BH</Logo>
     </HeaderContainer>
