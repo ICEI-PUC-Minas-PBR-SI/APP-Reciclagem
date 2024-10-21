@@ -1,6 +1,5 @@
 import {
   IsBoolean,
-  IsDateString,
   IsEmail,
   IsIn,
   IsInt,
@@ -30,8 +29,8 @@ export class CreateUserDto {
     required: true,
   })
   @IsString()
-  @IsNotEmpty()
-  full_name: string;
+  @IsOptional()
+  full_name?: string;
 
   @ApiProperty({
     type: String,
@@ -46,32 +45,24 @@ export class CreateUserDto {
     type: String,
     required: true,
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  username: string;
+  username?: string;
 
   @ApiProperty({
     type: String,
     required: true,
   })
-  @IsDateString()
-  @IsNotEmpty()
-  birth_date: string;
-
-  @ApiProperty({
-    type: String,
-    required: true,
-  })
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  district: string;
+  district?: string;
 
   @ApiProperty({
     type: Number,
     required: true,
   })
   @IsInt()
-  @IsNotEmpty()
+  @IsOptional()
   number?: number;
 
   @ApiProperty({
@@ -86,9 +77,9 @@ export class CreateUserDto {
     type: String,
     required: true,
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  phone: string;
+  phone?: string;
 
   @ApiProperty({
     type: Boolean,

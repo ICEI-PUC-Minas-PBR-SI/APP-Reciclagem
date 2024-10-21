@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 // import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './users.repository';
 import { ProfileRepository } from 'src/profile/profile.repository';
-import { UserEntity } from './entities/user.entity';
+import { Profiles, UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +15,10 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const profileId = await this.verifyProfileName(createUserDto.profile_name);
 
-    await this.verifyUserNameDuplicity(createUserDto.username);
+    if (createUserDto.profile_name === Profiles.CLIENT) {
+      await this.verifyUserNameDuplicity(createUserDto.username);
+    }
+
     await this.verifyEmailDuplicity(createUserDto.email);
 
     return this.userRepository.create(createUserDto, profileId);

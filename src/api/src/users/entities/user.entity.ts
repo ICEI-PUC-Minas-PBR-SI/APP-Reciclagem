@@ -13,7 +13,6 @@ export class UserEntity implements User {
   full_name: string;
   email: string;
   username: string;
-  birth_date: Date;
   district: string;
   complement: string;
   phone: string;

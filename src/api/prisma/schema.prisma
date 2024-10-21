@@ -30,15 +30,14 @@ enum categoryItems {
 model User {
   id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
   profile_id    Int      @map("PERFIL_ID") @db.UnsignedInt()
-  full_name     String   @db.VarChar(100)
+  full_name     String?   @db.VarChar(100)
   email         String   @db.VarChar(100) @unique
-  username      String   @db.VarChar(100) @unique
+  username      String?   @db.VarChar(100) @unique
   password      String   @db.VarChar(255)
-  birth_date    DateTime? @map("birth_date") @db.Date
-  district      String   @db.VarChar(100)
-  number        Int
+  district      String?   @db.VarChar(100)
+  number        Int?
   complement    String?  @db.VarChar(20)
-  phone         String   @db.VarChar(20)
+  phone         String?  @db.VarChar(20)
   status        Boolean  @default(true)
 
   profile       Profile  @relation(fields: [profile_id], references: [id])
