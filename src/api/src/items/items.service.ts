@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { ItemResponseDto } from './dto/item.response.dto';
@@ -43,5 +47,21 @@ export class ItemsService {
     await this.getById(id);
 
     await this.itemsRepository.remove(id);
+  }
+
+  async searchByName(name: string): Promise<ItemResponseDto[]> {
+    if (!name) {
+      throw new BadRequestException(
+        'You need to enter the name of the item in the search',
+      );
+    }
+
+    const result = await this.itemsRepository.searchByName(name);
+
+    if (!result || result.length === 0) {
+      throw new NotFoundException('No items found with the given name');
+    }
+
+    return result;
   }
 }
