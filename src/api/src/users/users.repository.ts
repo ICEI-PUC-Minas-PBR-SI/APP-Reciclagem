@@ -17,7 +17,6 @@ export class UsersRepository {
         email: create.email,
         username: create.username,
         password: hashedPassword,
-        birth_date: create.birth_date,
         complement: create.complement,
         district: create.district,
         number: create.number,
