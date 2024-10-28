@@ -11,6 +11,7 @@ import { EstablishmentService } from './establishment.service';
 import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { ApiResponse } from '@nestjs/swagger';
 import { EstablishmentResponseDto } from './dto/establishment.response.dto';
+import { EstablishmentListResponseDto } from './dto/establishment-list.response.dto';
 
 @Controller('establishment')
 export class EstablishmentController {
@@ -48,5 +49,19 @@ export class EstablishmentController {
           error.status || HttpStatus.NOT_FOUND,
         );
       });
+  }
+
+  @Get()
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: [EstablishmentListResponseDto],
+  })
+  list(): Promise<EstablishmentListResponseDto[]> {
+    return this.establishmentService.list().catch(error => {
+      throw new HttpException(
+        error.message,
+        error.status || HttpStatus.BAD_REQUEST,
+      );
+    });
   }
 }
