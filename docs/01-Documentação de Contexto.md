@@ -1,41 +1,120 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+O projeto visa desenvolver uma aplicação que promove cidades e comunidades sustentáveis, incentivando o uso de produtos recicláveis e práticas colaborativas inovadoras. A gestão inadequada de resíduos sólidos urbanos é um desafio ambiental crítico enfrentado globalmente, com estimativas apontando para um aumento significativo na geração de resíduos até 2050, caso práticas não sustentáveis permaneçam prevalentes. A reciclagem se destaca como uma solução eficaz, reduzindo o impacto ambiental e contribuindo para a mitigação das mudanças climáticas. No entanto, o sucesso dessa prática depende do engajamento da população e da efetividade das políticas públicas.
+
+O projeto aborda a necessidade de um sistema que facilite o descarte consciente de resíduos e promova a educação ambiental, visando um impacto positivo na sustentabilidade urbana.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
+O problema central é a falta de engajamento e conscientização da população quanto à importância da reciclagem. Mesmo que a reciclagem seja uma estratégia ambientalmente benéfica, a baixa adesão a essas práticas prejudica a eficiência dos sistemas de gestão de resíduos. Isso ocorre devido a fatores como desinformação, falta de infraestrutura e políticas públicas fragmentadas, que dificultam a correta separação e descarte de resíduos.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Além disso, a ausência de centros de triagem modernos e programas consistentes de coleta seletiva agrava a situação, limitando o reaproveitamento de resíduos e comprometendo o avanço para uma economia circular. O contexto dessa aplicação inclui a utilização de tecnologias digitais para mapear pontos de coleta e facilitar o processo de reciclagem na cidade de Belo Horizonte, envolvendo colaboração comunitária e apoio institucional.
 
 ## Objetivos
+Objetivo Geral: Desenvolver uma aplicação para mapeamento e automação da identificação de pontos de coleta de materiais recicláveis, promovendo a sustentabilidade e facilitando o descarte consciente pela população.
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+Objetivos Específicos:
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+- Promover a conscientização ambiental e a educação para a sustentabilidade por meio de informações relevantes.
+- Identificar e mapear pontos de coleta para materiais recicláveis na região de Belo Horizonte.
+- Realizar pesquisas sobre processos de reciclagem e categorização de materiais.
+- Implementar um sistema que mapeia pontos de coleta com informações detalhadas sobre resíduos aceitos e horários de funcionamento.
+- Integrar filtros que permitam a categorização dos materiais recicláveis e dos estabelecimentos.
+
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+A reciclagem é fundamental para a redução do uso de recursos naturais, a diminuição dos resíduos em aterros e a mitigação das mudanças climáticas. No entanto, a falta de engajamento da população, motivada por desinformação e ausência de infraestrutura adequada, ainda é um grande desafio. Este projeto visa superar essas barreiras por meio de uma aplicação que centraliza informações de maneira acessível, incentivando práticas de reciclagem.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+Ao utilizar processos de negócio como cadastro de usuários, registro de itens reciclados, localização de serviços e rankings gamificados, a aplicação motiva a participação ativa e contínua da população. A proposta, assim, não só contribui para a gestão eficiente de resíduos, mas também educa e engaja a comunidade, alinhando-se com os Objetivos de Desenvolvimento Sustentável da ONU.
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O público-alvo da aplicação inclui moradores da cidade de Belo Horizonte, abrangendo diferentes perfis:
+
+- Cidadãos comuns: Pessoas interessadas em adotar práticas sustentáveis, independentemente de idade, que necessitam de informações claras e acessíveis sobre pontos de coleta de recicláveis.
+
+- Empresas e estabelecimentos comerciais: Pequenos e médios negócios que queiram incentivar a sustentabilidade entre seus colaboradores e clientes.
+
+- Órgãos públicos e gestores de políticas ambientais: Interessados em obter dados sobre o engajamento da comunidade e pontos de coleta para a tomada de decisões.
+
+- Cooperativas de reciclagem: Profissionais que podem se beneficiar da centralização das informações para melhorar a eficiência das operações de coleta e triagem.
+
+### Guilherme Henrique
+
+Idade: 27 anos
+
+Sexo: Masculino
+
+Profissão: Estudante
+
+Localização: Belo Horizonte, MG
+
+Personalidade: Apaixonado por IoT, sempre se atualiza no mercado e tem a necessidade de poder renovar sempre seus equipamentos eletrônicos.
+
+Frustração: Não encontrar um ponto de coleta, e ficar acumulando lixo em casa até encontrar o local certo.
+
+Necessidade:
+Estou procurando um local para reciclar materiais de computadores, como placas e cabos. Onde posso descarregar esses itens? Quais são os horários de funcionamento? Também gostaria de saber como devo preparar os materiais para garantir uma reciclagem adequada e eficiente.
+
+Dificuldades:
+Além de não conhecer nenhum local para descarte adequado de lixo eletrônico, trabalho em horário comercial e tenho dificuldade em levar o lixo até um local próprio para descarte. Além disso, me incomoda não entender exatamente como ou por que devo levar até um determinado lugar.
+
+Objetivo:
+Realizar o descarte adequado de lixo eletrônico.
+
+### Ellen Silva
+
+Idade: 24 anos
+
+Sexo: Feminino
+
+Profissão: Desenvolvedora
+
+Localização: Rio de Janeiro, RJ
+
+Personalidade: Sou uma desenvolvedora e amo minha profissão, adoro poder ajudar os outros e tento fazer do mundo um lugar melhor.
+
+Frustração: Não divulgar todos os pontos de coleta, e não ajudar com eficiência quem quer reciclar.
+
+Necessidade:
+Poder desenvolver um sistema que ajude pessoas a fazer o bem, como reciclar materiais mais complexos, como placas de computadores, baterias alcalinas e de lítio, podendo divulgar pontos de reciclagem para usuários interessados.
+
+Dificuldades:
+Além da complexidade de desenvolver um programa para reciclagem, devo fazer buscas eficientes de pontos adequados de descarte, pesquisando indicações de locais com ajuda da internet via telefonemas e indicações.
+
+Objetivo:
+Poder ajudar o mundo e o próximo usando minha profissão para ter um maior alcance.
+
+### Eduardo Costa
+
+Idade: 46 anos
+
+Sexo: Masculino
+
+Profissão: Empresário
+
+Localização: Contagem, MG
+
+Personalidade: Sou empresário no ramo de reciclagem, desenvolvo esse papel há 12 anos, sou um entusiasta da tecnologia e me preocupo com o meio ambiente.
+
+Frustração: Não conseguir alcançar uma quantidade ideal de material para manter os empregados e minha família.
+
+Necessidade:
+Preciso maximizar meus clientes e ter uma maior visibilidade, receber mais itens para reciclagem, podendo obter um lucro maior e gerar empregos.
+
+Dificuldades:
+Apenas os cartazes de apresentação e a fachada do depósito de reciclagem não têm sido o suficiente para receber uma boa quantidade de itens para a reciclagem, tendo poucos recursos, minha renda diminui.
+
+Objetivo:
+Realizar mais reciclagem para ter um lucro maior e tornar o mundo melhor
+
+## Mapa de Stakeholders
+
+
+![MapaStakeHolders](https://github.com/user-attachments/assets/cdbf2207-4764-43d2-a6e5-c069f06caa38)
+
 
 Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
 
