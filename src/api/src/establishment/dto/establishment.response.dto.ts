@@ -20,8 +20,17 @@ export class EstablishmentResponseDto {
   phone: string;
 
   @ApiProperty()
-  product: boolean;
+  product: string;
 
   @ApiProperty()
   score: boolean;
+
+  @ApiProperty()
+  cep: number;
+
+  @ApiProperty()
+  latitude: number;
+
+  @ApiProperty()
+  longitude: number;
 }

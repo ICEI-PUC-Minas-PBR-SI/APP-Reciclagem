@@ -1,4 +1,13 @@
-import { IsBoolean, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsInt,
+  IsLatitude,
+  IsLongitude,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateEstablishmentDto {
@@ -43,11 +52,13 @@ export class CreateEstablishmentDto {
   phone: string;
 
   @ApiProperty({
-    type: Boolean,
+    type: [String],
     required: true,
   })
-  @IsBoolean()
-  product?: boolean;
+  @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty()
+  product: string[];
 
   @ApiProperty({
     type: Boolean,
@@ -55,4 +66,32 @@ export class CreateEstablishmentDto {
   })
   @IsBoolean()
   score?: boolean;
+
+  @ApiProperty({
+    type: Number,
+    required: true,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  cep!: number;
+
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: 40.7128,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  @IsLatitude()
+  latitude!: number;
+
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: -74.006,
+  })
+  @IsNotEmpty()
+  @IsNumber()
+  @IsLongitude()
+  longitude!: number;
 }

@@ -7,6 +7,9 @@ export class EstablishmentEntity implements Establishment {
   district: string;
   neighborhood: string;
   phone: string;
-  product: boolean;
+  product: string;
   score: boolean;
+  cep: number;
+  latitude: number;
+  longitude: number;
 }

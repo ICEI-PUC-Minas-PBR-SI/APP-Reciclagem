@@ -22,6 +22,9 @@ export class UsersRepository {
         number: create.number,
         phone: create.phone,
         status: create.status,
+        cep: create.cep,
+        latitude: create.latitude,
+        longitude: create.longitude,
       },
     });
   }
@@ -29,12 +32,14 @@ export class UsersRepository {
   async findByUsername(username: string): Promise<UserEntity | null> {
     return await this.prisma.user.findUnique({
       where: { username },
+      include: { profile: true },
     });
   }
 
   async findByEmail(email: string): Promise<UserEntity | null> {
     return await this.prisma.user.findUnique({
       where: { email },
+      include: { profile: true },
     });
   }
 }
