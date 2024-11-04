@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
-import { Container, Label, Tag, TagsContainer } from "./style";
+import { Container, Tag, TagsContainer } from "./style";
+import { Input } from "@/src/components/Input";
 
 interface MaterialsTagSelectorProps {
   selectedMaterials: string[];
@@ -34,7 +35,7 @@ function MaterialsTagSelector({
 
   return (
     <Container>
-      <Label>Materiais que Coleta</Label>
+     <Input.Label>Materiais que Coleta</Input.Label>
       <TagsContainer>
         {materials.map((material) => (
           <Tag

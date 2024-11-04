@@ -5,7 +5,7 @@ import { Platform } from "react-native";
 const api = axios.create({
   baseURL:
     Platform.OS === "android"
-      ? "http://192.168.3.14:3001"
+      ? "http://192.168.3.56:3001"
       : "http://localhost:3001",
 });
 
@@ -43,6 +43,16 @@ export const loginUser = async ({ email, password }: any) => {
 export const serachMaterial = async ({ name }: any) => {
   try {
     const response = await api.get(`/items/search?name=${name}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getEstabelecimentos = async () => {
+  try {
+    const response = await api.get(`/establishment
+`);
     return response.data;
   } catch (error) {
     throw error;

@@ -1,6 +1,6 @@
 import { Input } from "@/src/components/Input";
 import SimpleInput from "@/src/components/Input/SimpleInput";
-import { TitleH3 } from "@/src/components/Titles";
+import { TitleH3 } from "@/src/components/Texts";
 import React from "react";
 import { Text, View } from "react-native";
 import { FormSectionContainer } from "../../../../components/Containers";

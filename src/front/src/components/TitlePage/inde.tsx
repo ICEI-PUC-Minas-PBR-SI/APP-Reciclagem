@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import styled from "styled-components/native";
+import { DescriptionText } from "../Texts";
 
 const TitlePage = ({
   title,
@@ -12,7 +13,7 @@ const TitlePage = ({
   return (
     <Container>
       <Title>{title}</Title>
-      <Subtitle>{subtitle}</Subtitle>
+      <DescriptionText>{subtitle}</DescriptionText>
     </Container>
   );
 };
@@ -21,18 +22,11 @@ export default TitlePage;
 
 const Container = styled(View)`
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 `;
 
 const Title = styled(Text)`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: bold;
   color: #1a1a1a;
-`;
-
-const Subtitle = styled(Text)`
-  font-size: 14px;
-  color: #9e9e9e;
-  text-align: center;
-  width: 330px;
 `;

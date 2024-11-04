@@ -1,13 +1,10 @@
-import SimpleInput from "@/src/components/Input/SimpleInput";
-import { TitleH3 } from "@/src/components/Titles";
 import React from "react";
-import { View } from "react-native";
-import styled from "styled-components/native";
+import SimpleInput from "@/src/components/Input/SimpleInput";
+import { TitleH3 } from "@/src/components/Texts";
 import MaterialsTagSelector from "../MaterialsTagsSelector";
 import { FormSectionContainer } from "@/src/components/Containers";
-import { Switch } from "react-native-paper";
-import { Input } from "@/src/components/Input";
 import ToggleScore from "../ToggleScore";
+import AddressForm from "./AddressForm";
 
 interface CollectorFormProps {
   establishmentData: {
@@ -15,10 +12,25 @@ interface CollectorFormProps {
     phone: string;
     district: string;
     score: boolean;
+    cep: string;
+    city: string;
+    state: string;
+    street: string;
+    number: string;
+    latitude: string;
+    longitude: string;
   };
   handleChange: (field: string, value: string | boolean) => void;
   selectedMaterials: string[];
   setSelectedMaterials: (materials: string[]) => void;
+  marker: { latitude: number; longitude: number };
+  region: {
+    latitude: number;
+    longitude: number;
+    latitudeDelta: number;
+    longitudeDelta: number;
+  };
+  handleMapPress: (event: any) => void;
 }
 
 const FormCollector = ({
@@ -26,6 +38,9 @@ const FormCollector = ({
   handleChange,
   selectedMaterials,
   setSelectedMaterials,
+  marker,
+  region,
+  handleMapPress,
 }: CollectorFormProps) => {
   return (
     <FormSectionContainer>
@@ -47,27 +62,23 @@ const FormCollector = ({
         isRequired
       />
 
-      <SimpleInput
-        label="Endereço"
-        placeholder="Insira seu endereço"
-        value={establishmentData.district}
-        onChangeText={(value) => handleChange("district", value)}
-        isRequired
+      <AddressForm
+        addressData={establishmentData}
+        marker={marker}
+        region={region}
+        handleAddressChange={handleChange}
+        handleMapPress={handleMapPress}
       />
 
       <MaterialsTagSelector
         selectedMaterials={selectedMaterials}
         setSelectedMaterials={setSelectedMaterials}
       />
+
       <ToggleScore
         value={establishmentData.score}
         onValueChange={(value) => handleChange("score", value)}
       />
-
-      {/* <ToggleInput
-        label={"Registrar Coletas?"}
-        onToggle={(active) => handleChange("score", active)}
-      /> */}
     </FormSectionContainer>
   );
 };

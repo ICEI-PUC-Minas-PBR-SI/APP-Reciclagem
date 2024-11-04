@@ -6,8 +6,9 @@ export const FormSectionContainer = styled.View`
 `;
 
 export const ContainerPage = styled.View`
-  background-color: #fff;
+  flex: 1;
+  padding: 48px 32px 24px 32px;
   width: 100%;
-  padding: 48px 24px;
   gap: 24px;
+  background-color: #fff;
 `;

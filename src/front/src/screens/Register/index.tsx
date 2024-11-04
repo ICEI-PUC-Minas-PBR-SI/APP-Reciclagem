@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {
-  Alert,
-  Button,
-  ScrollView,
-  Text,
-  View,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { Alert, ScrollView, View, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
-import { Input } from "@/src/components/Input";
 import FormUser from "./components/Forms/FormUser";
 import DividerHorizontal from "@/src/components/Divider";
-import { FormContainer } from "./styled";
 import FormClient from "./components/Forms/FormClient";
-import TitlePage from "@/src/components/Divider/TitlePage/inde";
+import TitlePage from "@/src/components/TitlePage/inde";
 import ToggleButtonGroup from "./components/ToggleButtonGroup";
 import { ContainerPage } from "@/src/components/Containers";
 import FormCollector from "./components/Forms/FormColetor";
+import styled from "styled-components/native";
+import Button from "@/src/components/Button";
 
 const RegisterPage = () => {
   const [active, setActive] = useState("CLIENT");
@@ -47,8 +39,8 @@ const RegisterPage = () => {
     state: "",
     street: "",
     number: "",
-    latitude: "", // Campo para latitude
-    longitude: "", // Campo para longitude
+    latitude: "",
+    longitude: "",
   });
 
   const handleInputClientForm = (field: string, value: string) => {
@@ -63,27 +55,43 @@ const RegisterPage = () => {
     phone: "",
     district: "",
     score: false,
+    cep: "",
+    city: "",
+    state: "",
+    street: "",
+    number: "",
+    latitude: "",
+    longitude: "",
+    materialsCollected: [],
   });
 
-  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
-
-  const handleChange = (field: string, value: string | boolean) => {
+  const handleInputEstablishmentForm = (
+    field: string,
+    value: string | boolean
+  ) => {
     setEstablishmentData((prevState) => ({
       ...prevState,
       [field]: value,
     }));
   };
 
+  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
+
+  // const handleChangeMaterials = (materials: string[]) => {
+  //   setSelectedMaterials(materials);
+  //   handleInputEstablishmentForm("materialsCollected", materials);
+  // };
+
   const [region, setRegion] = useState({
-    latitude: -7.983908, // Coordenadas padrão (pode ser ajustado)
-    longitude: 112.621391,
+    latitude: -19.912998,
+    longitude: -43.940933,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   });
 
   const [marker, setMarker] = useState({
-    latitude: -7.983908,
-    longitude: 112.621391,
+    latitude: -19.912998,
+    longitude: -43.940933,
   });
 
   useEffect(() => {
@@ -95,29 +103,58 @@ const RegisterPage = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+
       setRegion({
         ...region,
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
+        latitude,
+        longitude,
       });
       setMarker({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
+        latitude,
+        longitude,
       });
 
-      // Atualizar os dados do formulário com a localização inicial
-      handleInputClientForm("latitude", location.coords.latitude.toString());
-      handleInputClientForm("longitude", location.coords.longitude.toString());
+      handleInputClientForm("latitude", latitude.toString());
+      handleInputClientForm("longitude", longitude.toString());
+      handleInputEstablishmentForm("latitude", latitude.toString());
+      handleInputEstablishmentForm("longitude", longitude.toString());
+
+      const address = await Location.reverseGeocodeAsync({
+        latitude,
+        longitude,
+      });
+
+      if (address.length > 0) {
+        const { postalCode, subregion, region, street } = address[0];
+        handleInputClientForm("cep", postalCode || "");
+        handleInputClientForm("city", subregion || "");
+        handleInputClientForm("state", region || "");
+        handleInputClientForm("street", street || "");
+
+        handleInputEstablishmentForm("district", subregion || "");
+      }
     })();
   }, []);
 
-  const handleMapPress = (event: any) => {
+  const handleMapPress = async (event: any) => {
     const { latitude, longitude } = event.nativeEvent.coordinate;
     setMarker({ latitude, longitude });
 
-    // Atualizar os dados do formulário com a nova localização
     handleInputClientForm("latitude", latitude.toString());
     handleInputClientForm("longitude", longitude.toString());
+    handleInputEstablishmentForm("latitude", latitude.toString());
+    handleInputEstablishmentForm("longitude", longitude.toString());
+
+    const address = await Location.reverseGeocodeAsync({ latitude, longitude });
+    if (address.length > 0) {
+      const { city, region, street } = address[0];
+      handleInputClientForm("city", city || "");
+      handleInputClientForm("state", region || "");
+      handleInputClientForm("street", street || "");
+
+      handleInputEstablishmentForm("district", city || "");
+    }
   };
 
   const handleSubmit = async () => {
@@ -134,12 +171,11 @@ const RegisterPage = () => {
 
     try {
       if (active === "CLIENT") {
-        // await handleClientSubmit();
+        // Lógica de submissão para CLIENT
       } else if (active === "COLLECTOR") {
-        // await handleCollectorSubmit();
+        // Lógica de submissão para COLLECTOR
       }
       Alert.alert("Conta criada com sucesso!");
-      // router.replace("/");
     } catch (error) {
       console.error("Erro ao criar:", error);
       Alert.alert("Erro ao criar. Por favor, tente novamente.");
@@ -167,32 +203,26 @@ const RegisterPage = () => {
               <FormClient
                 formData={formDataClient}
                 handleChange={handleInputClientForm}
-              />
-              <MapView
-                style={styles.map}
+                marker={marker}
                 region={region}
-                onPress={handleMapPress} // Atualiza o marcador ao pressionar o mapa
-              >
-                <Marker coordinate={marker} />
-              </MapView>
-              <View style={styles.addressContainer}>
-                <Text>Latitude: {marker.latitude}</Text>
-                <Text>Longitude: {marker.longitude}</Text>
-              </View>
+                handleMapPress={handleMapPress}
+              />
             </>
           ) : (
-            <FormCollector
-              establishmentData={establishmentData}
-              handleChange={handleChange}
-              selectedMaterials={selectedMaterials}
-              setSelectedMaterials={setSelectedMaterials}
-            />
+            <>
+              <FormCollector
+                establishmentData={establishmentData}
+                handleChange={handleInputEstablishmentForm}
+                selectedMaterials={selectedMaterials}
+                setSelectedMaterials={setSelectedMaterials}
+                marker={marker}
+                region={region}
+                handleMapPress={handleMapPress}
+              />
+            </>
           )}
         </FormContainer>
-
-        <View style={{ marginTop: 16 }}>
-          <Button title="Enviar" onPress={handleSubmit} />
-        </View>
+        <Button title="Cadastrar" theme="primary" onPress={handleSubmit} />
       </ContainerPage>
     </ScrollView>
   );
@@ -209,17 +239,8 @@ const validateForm = (formData: any, confirmPassword: string) => {
   return null;
 };
 
-const styles = StyleSheet.create({
-  map: {
-    width: Dimensions.get("window").width,
-    height: 300,
-  },
-  addressContainer: {
-    padding: 10,
-    backgroundColor: "white",
-    alignItems: "center",
-    marginTop: 10,
-  },
-});
+const FormContainer = styled.View`
+  gap: 18px;
+`;
 
 export default RegisterPage;

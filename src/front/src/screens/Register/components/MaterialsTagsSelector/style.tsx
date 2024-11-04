@@ -2,14 +2,8 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 12px;
-`;
-
-export const Label = styled.Text`
-  color: #1c1b1f;
-  font-size: 14px;
-  font-weight: 500;
+  flex: 1;
+  gap: 8px;
 `;
 
 export const TagsContainer = styled.View`
