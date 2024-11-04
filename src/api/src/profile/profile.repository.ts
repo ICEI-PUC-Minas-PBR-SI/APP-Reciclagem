@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { profileEntity } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class ProfileRepository {
@@ -12,9 +13,18 @@ export class ProfileRepository {
       },
       select: {
         id: true,
+        label: true,
       },
     });
 
     return profile.id;
+  }
+
+  async getById(id: number): Promise<profileEntity | undefined> {
+    const profile = await this.prisma.profile.findUnique({
+      where: { id },
+    });
+
+    return profile as profileEntity;
   }
 }

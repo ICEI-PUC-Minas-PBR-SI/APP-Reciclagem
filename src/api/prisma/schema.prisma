@@ -34,11 +34,14 @@ model User {
   email         String   @db.VarChar(100) @unique
   username      String?   @db.VarChar(100) @unique
   password      String   @db.VarChar(255)
+  cep           Int?      @default(0)
   district      String?   @db.VarChar(100)
   number        Int?
   complement    String?  @db.VarChar(20)
   phone         String?  @db.VarChar(20)
   status        Boolean  @default(true)
+  latitude      Float    @db.Float @default(0.0)
+  longitude     Float    @db.Float @default(0.0)
 
   profile       Profile  @relation(fields: [profile_id], references: [id])
   Record_Collection Record_Collection[]
@@ -65,8 +68,11 @@ model Establishment {
   neighborhood  String   @db.VarChar(100)
   number        Int
   phone         String   @db.VarChar(20)
-  product       Boolean  @default(true)
+  cep           Int      @default(0)
+  product       String
   score         Boolean?  @default(true)
+  latitude      Float    @default(0.0) @db.Float
+  longitude     Float   @default(0.0) @db.Float
   
   @@map(name: "Establishment")
   Record_Collection Record_Collection[]

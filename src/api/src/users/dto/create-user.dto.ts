@@ -3,7 +3,10 @@ import {
   IsEmail,
   IsIn,
   IsInt,
+  IsLatitude,
+  IsLongitude,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   MinLength,
@@ -96,4 +99,32 @@ export class CreateUserDto {
   @IsString()
   @MinLength(6)
   password: string;
+
+  @ApiProperty({
+    type: Number,
+    required: true,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  cep!: number;
+
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: 40.7128,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  @IsLatitude()
+  latitude!: number;
+
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: -74.006,
+  })
+  @IsNotEmpty()
+  @IsNumber()
+  @IsLongitude()
+  longitude!: number;
 }

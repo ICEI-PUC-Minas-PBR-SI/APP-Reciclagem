@@ -16,8 +16,11 @@ export class EstablishmentRepository {
         neighborhood: create.neighborhood,
         number: create.number,
         phone: create.phone,
-        product: create.product,
+        product: create.product.join(', '),
         score: create.score,
+        cep: create.cep,
+        latitude: create.latitude,
+        longitude: create.longitude,
       },
     });
   }
@@ -39,6 +42,9 @@ export class EstablishmentRepository {
         neighborhood: true,
         number: true,
         score: true,
+        product: true,
+        latitude: true,
+        longitude: true,
       },
     });
   }
