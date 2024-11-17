@@ -28,16 +28,17 @@ enum categoryItems {
 }
 
 model User {
-  id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
-  profile_id    Int      @map("PERFIL_ID") @db.UnsignedInt()
+  id            Int       @id() @default(autoincrement()) @db.UnsignedInt()
+  profile_id    Int       @map("PERFIL_ID") @db.UnsignedInt()
   full_name     String?   @db.VarChar(100)
-  email         String   @db.VarChar(100) @unique
+  email         String    @db.VarChar(100) @unique
   username      String?   @db.VarChar(100) @unique
-  password      String   @db.VarChar(255)
-  cep           Int?      @default(0)
-  district      String?   @db.VarChar(100)
-  number        Int?
-  complement    String?  @db.VarChar(20)
+  password      String    @db.VarChar(255)
+  cep           String?   @db.VarChar(20)
+  city          String?   @db.VarChar(100)
+  street        String?   @db.VarChar(100)
+  state         String?   @db.VarChar(100)
+  number        String?   @db.VarChar(50)
   phone         String?  @db.VarChar(20)
   status        Boolean  @default(true)
   latitude      Float    @db.Float @default(0.0)

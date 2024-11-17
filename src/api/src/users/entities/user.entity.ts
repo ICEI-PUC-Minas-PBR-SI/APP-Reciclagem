@@ -7,17 +7,18 @@ export enum Profiles {
 }
 
 export class UserEntity implements User {
-  cep: number;
+  id: number;
+  number: string;
+  cep: string;
+  city: string;
+  street: string;
+  state: string;
   latitude: number;
   longitude: number;
-  id: number;
-  number: number;
   profile_id: number;
   full_name: string;
   email: string;
   username: string;
-  district: string;
-  complement: string;
   phone: string;
   status: boolean;
   password: string;

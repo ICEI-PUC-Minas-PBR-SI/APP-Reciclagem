@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, Logger, BadRequestException } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const logger = new Logger('ValidationErrors');
 
   const config = new DocumentBuilder()
     .setTitle('app_reciclagem')
@@ -25,8 +26,23 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      exceptionFactory: errors => {
+        const formattedErrors = errors.map(error => {
+          const constraints = Object.values(error.constraints || {}).join(', ');
+          return `${error.property}: ${constraints}`;
+        });
+
+        logger.error(`Validation error(s): ${formattedErrors.join('; ')}`);
+
+        return new BadRequestException({
+          statusCode: 400,
+          message: formattedErrors,
+          error: 'Requisição inválida',
+        });
+      },
     }),
   );
+
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
