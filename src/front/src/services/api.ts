@@ -1,6 +1,8 @@
+// "http://192.168.3.56:3001"
 import { name } from "ci-info";
 import axios from "axios";
 import { Platform } from "react-native";
+import { DataEstablishmentForm } from "../interfaces/form";
 
 const api = axios.create({
   baseURL:
@@ -12,6 +14,7 @@ const api = axios.create({
 export const createUser = async (userData: any) => {
   try {
     const response = await api.post("/users", userData);
+
     return response.data;
   } catch (error) {
     console.error("Erro ao criar usuário:", error);
@@ -19,7 +22,7 @@ export const createUser = async (userData: any) => {
   }
 };
 
-export const createEstablishment = async (establishmentData: any) => {
+export const createEstablishment = async (establishmentData: DataEstablishmentForm) => {
   try {
     const response = await api.post("/establishment", establishmentData);
     return response.data;
@@ -43,6 +46,16 @@ export const loginUser = async ({ email, password }: any) => {
 export const serachMaterial = async ({ name }: any) => {
   try {
     const response = await api.get(`/items/search?name=${name}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getMaterials = async () => {
+  try {
+    const response = await api.get(`/items?type=Rciclavel&category=Papel
+`);
     return response.data;
   } catch (error) {
     throw error;

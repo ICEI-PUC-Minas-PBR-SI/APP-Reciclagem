@@ -1,30 +1,23 @@
 import { Link, router } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
-import * as SecureStore from "expo-secure-store";
-import { useEffect } from "react";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { ContainerPage } from "@/src/components/Containers";
 import { Tabs } from "./components/Tabs";
 import { NavigationTabBar } from "@/src/components/NavigationTabBar";
 import MaterialsList from "./components/MaterialsList";
+import { checkToken } from "@/src/utils/auth";
 
 export default function HomePage() {
   const [selectedTab, setSelectedTab] = useState<string>("Materiais");
-  const tokenLogin = async () => {
-    const token = await SecureStore.getItemAsync("Local_Token");
-    if (token == null) {
-      router.replace("/login");
-    }
-  };
 
   useEffect(() => {
-    tokenLogin();
-  });
+    checkToken();
+  }, []);
 
   const handleNavigation = (page: string) => {
     setSelectedTab(page);
-    router.push(page);
+    router.navigate(page);
   };
 
   return (

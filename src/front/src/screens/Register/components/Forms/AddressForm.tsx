@@ -4,26 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 import SimpleInput from "@/src/components/Input/SimpleInput";
 import { FormSectionContainer } from "@/src/components/Containers";
 
-interface AddressFormProps {
-  addressData: {
-    cep: string;
-    city: string;
-    state: string;
-    street: string;
-    number: string;
-    latitude: string;
-    longitude: string;
-  };
-  marker: { latitude: number; longitude: number };
-  region: {
-    latitude: number;
-    longitude: number;
-    latitudeDelta: number;
-    longitudeDelta: number;
-  };
-  handleAddressChange: (field: string, value: string) => void;
-  handleMapPress: (event: any) => void;
-}
+
 
 const AddressForm = ({
   addressData,
@@ -31,7 +12,7 @@ const AddressForm = ({
   region,
   handleAddressChange,
   handleMapPress,
-}: AddressFormProps) => {
+}: any) => {
   return (
     <FormSectionContainer>
       {/* Address Inputs */}
@@ -77,7 +58,7 @@ const AddressForm = ({
         isRequired
       />
 
-      <View style={{borderRadius: 40}}>
+      <View style={{ borderRadius: 40 }}>
         <MapView style={styles.map} region={region} onPress={handleMapPress}>
           <Marker coordinate={marker} />
         </MapView>

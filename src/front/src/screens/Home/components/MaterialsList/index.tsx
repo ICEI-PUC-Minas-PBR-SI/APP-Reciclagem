@@ -4,7 +4,7 @@ import { ListItem } from "./ListItem";
 import Button from "@/src/components/Button";
 import DividerHorizontal from "@/src/components/Divider";
 import { Container, Section, SectionTitle } from "./style";
-import { getMateriais } from "@/src/services/api";
+import { getMaterials } from "@/src/services/api";
 
 interface Material {
   id: string;
@@ -20,7 +20,7 @@ const MaterialsList = () => {
 
   const getMaterialRequest = async () => {
     try {
-      const response = await getMateriais();
+      const response = await getMaterials();
 
       const recyclablesData = response.filter(
         (item: any) => item.type === "Rciclavel"
@@ -50,11 +50,11 @@ const MaterialsList = () => {
             type="RECICLÁVEL"
           />
         ))}
-        <Button
+        {/* <Button
           title="Todos os materiais recicláveis"
           theme="primary"
           onPress={() => console.log("Ver todos")}
-        />
+        /> */}
       </Section>
       <DividerHorizontal />
       <Section>
@@ -67,11 +67,11 @@ const MaterialsList = () => {
             type="RESÍDUO"
           />
         ))}
-        <Button
+        {/* <Button
           title="Todos os Resíduos"
           theme="primary"
           onPress={() => console.log("Ver todos")}
-        />
+        /> */}
       </Section>
     </Container>
   );

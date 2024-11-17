@@ -23,7 +23,6 @@ export const ListItem: React.FC<ListItemProps> = ({
 }) => {
   return (
     <ListItemContainer>
-      <ListItemImage source={{ uri: imageSource }} resizeMode="cover" />
       <ListItemTextContainer>
         <ListItemTitle>{title}</ListItemTitle>
       </ListItemTextContainer>

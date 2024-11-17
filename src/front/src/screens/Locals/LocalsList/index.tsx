@@ -22,7 +22,6 @@ const LocalsList = () => {
     try {
       const response = await getEstabelecimentos();
 
-      console.log("response:", response);
       setEstabelecimentos(response);
     } catch (err) {
       console.log(err);

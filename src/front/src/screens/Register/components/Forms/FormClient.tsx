@@ -7,16 +7,19 @@ import AddressForm from "./AddressForm";
 interface ClientFormProps {
   formData: {
     full_name: string;
+    district: string;
+    complement: string;
     phone: string;
+    status: boolean;
     cep: string;
     city: string;
     state: string;
     street: string;
     number: string;
-    latitude: string;
-    longitude: string;
+    latitude: number;
+    longitude: number;
   };
-  handleChange: (field: string, value: string) => void;
+  handleChange: (field: string, value: string | number | boolean) => void;
   marker: { latitude: number; longitude: number };
   region: {
     latitude: number;
@@ -26,6 +29,7 @@ interface ClientFormProps {
   };
   handleMapPress: (event: any) => void;
 }
+
 
 const FormClient = ({
   formData,

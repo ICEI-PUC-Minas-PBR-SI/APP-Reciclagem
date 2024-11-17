@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import { TabBarItem } from "./TabBarItem";
 import { useRouter } from "expo-router";
+import { logout } from "@/src/utils/auth";
 
 export const NavigationTabBar = () => {
   const [selectedTab, setSelectedTab] = useState<string>("/");
@@ -14,6 +15,15 @@ export const NavigationTabBar = () => {
       router.replace(page);
     }
     router.push(page);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout(); 
+      router.replace("/login"); 
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
   };
 
   return (
@@ -37,10 +47,10 @@ export const NavigationTabBar = () => {
         onPress={() => handleNavigation("/materiais")}
       />
       <TabBarItem
-        icon="person"
-        label="Perfil"
-        isSelected={selectedTab === "Perfil"}
-        onPress={() => handleNavigation("/perfil")}
+        icon="logout" 
+        label="Sair"
+        isSelected={false} 
+        onPress={handleLogout}
       />
     </TabBarContainer>
   );

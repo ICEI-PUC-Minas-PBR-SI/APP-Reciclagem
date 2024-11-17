@@ -10,17 +10,18 @@ interface CollectorFormProps {
   establishmentData: {
     name: string;
     phone: string;
-    district: string;
+    neighborhood: string;
     score: boolean;
     cep: string;
     city: string;
     state: string;
     street: string;
     number: string;
-    latitude: string;
-    longitude: string;
+    latitude: number;
+    longitude: number;
+    product: string[];
   };
-  handleChange: (field: string, value: string | boolean) => void;
+  handleChange: (field: string, value: string | boolean | number) => void;
   selectedMaterials: string[];
   setSelectedMaterials: (materials: string[]) => void;
   marker: { latitude: number; longitude: number };
@@ -32,6 +33,7 @@ interface CollectorFormProps {
   };
   handleMapPress: (event: any) => void;
 }
+
 
 const FormCollector = ({
   establishmentData,
