@@ -2,7 +2,6 @@ import {
   IsBoolean,
   IsEmail,
   IsIn,
-  IsInt,
   IsLatitude,
   IsLongitude,
   IsNotEmpty,
@@ -58,23 +57,39 @@ export class CreateUserDto {
   })
   @IsOptional()
   @IsString()
-  district?: string;
-
-  @ApiProperty({
-    type: Number,
-    required: true,
-  })
-  @IsInt()
-  @IsOptional()
-  number?: number;
+  number?: string;
 
   @ApiProperty({
     type: String,
-    required: false,
+    required: true,
   })
   @IsOptional()
   @IsString()
-  complement?: string;
+  cep?: string;
+
+  @ApiProperty({
+    type: String,
+    required: true,
+  })
+  @IsOptional()
+  @IsString()
+  street?: string;
+
+  @ApiProperty({
+    type: String,
+    required: true,
+  })
+  @IsOptional()
+  @IsString()
+  state?: string;
+
+  @ApiProperty({
+    type: String,
+    required: true,
+  })
+  @IsOptional()
+  @IsString()
+  city?: string;
 
   @ApiProperty({
     type: String,
@@ -99,14 +114,6 @@ export class CreateUserDto {
   @IsString()
   @MinLength(6)
   password: string;
-
-  @ApiProperty({
-    type: Number,
-    required: true,
-  })
-  @IsNumber()
-  @IsNotEmpty()
-  cep!: number;
 
   @ApiProperty({
     type: Number,
