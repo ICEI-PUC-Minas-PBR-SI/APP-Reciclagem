@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import MapView, { Marker } from "react-native-maps";
 import styled from "styled-components/native";
 
@@ -8,29 +8,72 @@ const Container = styled.View`
   overflow: hidden;
 `;
 
-const MapsLocals = ({
+interface MapsLocalsProps {
+  latitude: number;
+  longitude: number;
+  establishments: {
+    id: string;
+    latitude: number;
+    longitude: number;
+    name: string;
+  }[];
+  focusedPoint: { latitude: number; longitude: number } | null;
+}
+
+const MapsLocals: React.FC<MapsLocalsProps> = ({
   latitude,
   longitude,
-  latitudeMaker,
-  longitudeMaker,
-}: any) => {
+  establishments,
+  focusedPoint,
+}) => {
+  const mapRef = useRef<MapView>(null);
+
+  useEffect(() => {
+    if (focusedPoint && mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: focusedPoint.latitude,
+          longitude: focusedPoint.longitude,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        },
+        500
+      );
+    }
+  }, [focusedPoint]);
+
   return (
     <Container>
       <MapView
+        ref={mapRef}
         style={{ flex: 1 }}
         region={{
-          latitude: latitude,
-          longitude: longitude,
+          latitude,
+          longitude,
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
       >
         <Marker
           coordinate={{
-            latitude: latitudeMaker,
-            longitude: longitudeMaker,
+            latitude,
+            longitude,
           }}
+          title="Você está aqui"
+          pinColor={"blue"}
         />
+
+        {establishments.map((item) => (
+          <Marker
+            key={item.id}
+            coordinate={{
+              latitude: item.latitude,
+              longitude: item.longitude,
+            }}
+            title={item.name}
+            pinColor="green"
+          />
+        ))}
       </MapView>
     </Container>
   );

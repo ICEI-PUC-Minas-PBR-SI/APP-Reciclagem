@@ -1,6 +1,6 @@
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import SimpleInput from '@/src/components/Input/SimpleInput';
+import React from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import SimpleInput from "@/src/components/Input/SimpleInput";
 
 interface FormData {
   user: {
@@ -19,20 +19,19 @@ const UserForm = () => {
     formState: { errors },
   } = useFormContext<FormData>();
 
-
   return (
     <>
       <Controller
         name="user.username"
         control={control}
         rules={{
-          required: 'Nome de usuário é obrigatório',
+          required: "Nome de usuário é obrigatório",
           validate: (value) => {
             if (/[A-Z]/.test(value)) {
-              return 'O nome de usuário não pode conter letras maiúsculas';
+              return "O nome de usuário não pode conter letras maiúsculas";
             }
             if (/\s/.test(value)) {
-              return 'O nome de usuário não pode conter espaços';
+              return "O nome de usuário não pode conter espaços";
             }
             return true;
           },
@@ -43,11 +42,11 @@ const UserForm = () => {
             placeholder="Escolha um nome de usuário"
             value={value}
             onChangeText={(text) => {
-              clearErrors('user.username');
-              onChange(text.replace(/\s/g, ''));
+              clearErrors("user.username");
+              onChange(text.replace(/\s/g, ""));
             }}
             autoCapitalize="none"
-            error={errors?.user?.username?.message || ''}
+            error={errors?.user?.username?.message || ""}
             isRequired
           />
         )}
@@ -57,11 +56,7 @@ const UserForm = () => {
         name="user.email"
         control={control}
         rules={{
-          required: 'Email é obrigatório',
-          pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: 'Digite um email válido',
-          },
+          required: "Email é obrigatório",
         }}
         render={({ field: { onChange, value } }) => (
           <SimpleInput
@@ -69,12 +64,12 @@ const UserForm = () => {
             placeholder="Digite seu email"
             value={value}
             onChangeText={(text) => {
-              clearErrors('user.email');
+              clearErrors("user.email");
               onChange(text);
             }}
             keyboardType="email-address"
             isRequired
-            error={errors?.user?.email?.message || ''}
+            error={errors?.user?.email?.message || ""}
           />
         )}
       />
@@ -83,10 +78,10 @@ const UserForm = () => {
         name="user.password"
         control={control}
         rules={{
-          required: 'Senha é obrigatória',
+          required: "Senha é obrigatória",
           minLength: {
             value: 6,
-            message: 'A senha deve ter pelo menos 6 caracteres',
+            message: "A senha deve ter pelo menos 6 caracteres",
           },
         }}
         render={({ field: { onChange, value } }) => (
@@ -95,12 +90,12 @@ const UserForm = () => {
             placeholder="Digite sua senha"
             value={value}
             onChangeText={(text) => {
-              clearErrors('user.password');
+              clearErrors("user.password");
               onChange(text);
             }}
             secureTextEntry
             isRequired
-            error={errors?.user?.password?.message || ''}
+            error={errors?.user?.password?.message || ""}
           />
         )}
       />
@@ -109,9 +104,9 @@ const UserForm = () => {
         name="user.confirmPassword"
         control={control}
         rules={{
-          required: 'Confirmação de senha é obrigatória',
+          required: "Confirmação de senha é obrigatória",
           validate: (value) =>
-            value === watch('user.password') || 'As senhas não coincidem',
+            value === watch("user.password") || "As senhas não coincidem",
         }}
         render={({ field: { onChange, value } }) => (
           <SimpleInput
@@ -119,12 +114,12 @@ const UserForm = () => {
             placeholder="Confirme sua senha"
             value={value}
             onChangeText={(text) => {
-              clearErrors('user.confirmPassword');
+              clearErrors("user.confirmPassword");
               onChange(text);
             }}
             secureTextEntry
             isRequired
-            error={errors?.user?.confirmPassword?.message || ''}
+            error={errors?.user?.confirmPassword?.message || ""}
           />
         )}
       />

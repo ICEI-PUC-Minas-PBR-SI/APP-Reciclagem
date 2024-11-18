@@ -1,18 +1,18 @@
+import { FormSectionContainer } from "@/src/components/Containers";
+import SimpleInput from "@/src/components/Input/SimpleInput";
+import { TitleH3 } from "@/src/components/Texts";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import SimpleInput from "@/src/components/Input/SimpleInput";
-import { FormSectionContainer } from "@/src/components/Containers";
-import { TitleH3 } from "@/src/components/Texts";
 
 interface FormData {
-  client: {
-    fullName: string;
+  establishment: {
+    name: string;
     phone: string;
-    status: boolean;
+    product: string[];
+    score: boolean;
   };
 }
-
-const ClientForm = () => {
+const EstablishmentForm = () => {
   const {
     control,
     watch,
@@ -22,30 +22,30 @@ const ClientForm = () => {
 
   return (
     <FormSectionContainer>
-      <TitleH3>Informações Pessoais</TitleH3>
+      <TitleH3>Informações do Estabelecimento</TitleH3>
       <Controller
-        name="client.fullName"
+        name="establishment.name"
         control={control}
         rules={{
-          required: "Nome completo é obrigatório",
+          required: "O nome do estabelecimento é obrigatório",
         }}
         render={({ field: { onChange, value } }) => (
           <SimpleInput
-            label="Nome"
-            placeholder="Insira seu nome completo"
+            label="Nome do estabelecimento"
+            placeholder="Insira o nome do estabelecimento"
             value={value}
             onChangeText={(text) => {
-              clearErrors("client.fullName");
+              clearErrors("establishment.name");
               onChange(text);
             }}
             autoCapitalize="words"
-            error={errors?.client?.fullName?.message || ""}
+            error={errors?.establishment?.name?.message || ""}
             isRequired
           />
         )}
       />
       <Controller
-        name="client.phone"
+        name="establishment.phone"
         control={control}
         rules={{
           required: "Telefone é obrigatório",
@@ -71,12 +71,12 @@ const ClientForm = () => {
               placeholder="Insira seu numero de telefone"
               value={value}
               onChangeText={(text) => {
-                clearErrors("client.phone");
+                clearErrors("establishment.phone");
                 const formattedText = formatPhoneNumber(text);
                 onChange(formattedText);
               }}
               keyboardType="phone-pad"
-              error={errors?.client?.phone?.message || ""}
+              error={errors?.establishment?.phone?.message || ""}
               isRequired
             />
           );
@@ -86,4 +86,4 @@ const ClientForm = () => {
   );
 };
 
-export default ClientForm;
+export default EstablishmentForm;
