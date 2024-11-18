@@ -4,6 +4,7 @@ import { TitleH3 } from "@/src/components/Texts";
 import React from "react";
 import { Text, View } from "react-native";
 import { FormSectionContainer } from "../../../../components/Containers";
+import EmailInput from "@/src/components/Fields/InputEmail";
 
 interface FormUserProps {
   formData: {
@@ -27,6 +28,7 @@ const FormUser = ({ formData, onInputChange }: FormUserProps) => {
         onChangeText={(value) => onInputChange("username", value)}
         isRequired
       />
+
 
       <SimpleInput
         label="Email"
