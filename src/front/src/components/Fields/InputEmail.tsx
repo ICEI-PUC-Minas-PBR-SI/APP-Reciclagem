@@ -1,36 +1,38 @@
 import React from "react";
-import { Input } from ".";
-import { Text, TextInputProps } from "react-native";
+import { Input } from "../Input";
 
-interface SimpleInputProps extends TextInputProps {
+interface Props {
   label: string;
+  placeholder: string;
   value: string;
   onChangeText: (text: string) => void;
   isRequired?: boolean;
-  error?: string;
 }
 
-const SimpleInput = ({
+const EmailInput = ({
   label,
+  placeholder,
   value,
   onChangeText,
   isRequired = false,
-  error,
-  ...rest
-}: SimpleInputProps) => {
+}: Props) => {
   return (
     <Input.Root>
       <Input.Label isRequired={isRequired}>{label}</Input.Label>
       <Input.FieldContainer>
         <Input.FieldText
+          placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
-          {...rest}
+          keyboardType={"email-address"}
+          autoCapitalize="none"
+          autoComplete="email"
+          inputMode="email"
+
         />
       </Input.FieldContainer>
-      {error && <Text style={{ color: "red", fontSize: 12 }}>{error}</Text>}
     </Input.Root>
   );
 };
 
-export default SimpleInput;
+export default EmailInput;
