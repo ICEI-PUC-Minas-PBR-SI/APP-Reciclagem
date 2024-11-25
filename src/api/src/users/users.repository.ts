@@ -37,9 +37,24 @@ export class UsersRepository {
     });
   }
 
-  async findByEmail(email: string): Promise<UserEntity | null> {
+  async findByEmail(email: string): Promise<any> {
     return await this.prisma.user.findUnique({
       where: { email },
+      include: {
+        profile: true,
+        Establishment: true,
+      },
+    });
+  }
+
+  async listByClientActive(): Promise<UserEntity[]> {
+    return await this.prisma.user.findMany({
+      where: {
+        status: true,
+        profile: {
+          label: 'CLIENT',
+        },
+      },
       include: {
         profile: true,
       },

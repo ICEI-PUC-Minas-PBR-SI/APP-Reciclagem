@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UsersRepository } from './users.repository';
 import { ProfileRepository } from 'src/profile/profile.repository';
 import { Profiles, UserEntity } from './entities/user.entity';
+import { UserListClientResponseDTO } from './dto/user-list-client.response.dto';
 
 @Injectable()
 export class UsersService {
@@ -53,6 +54,18 @@ export class UsersService {
 
   async findByEmail(email: string): Promise<UserEntity> {
     return await this.userRepository.findByEmail(email);
+  }
+
+  async listByClientActive(): Promise<UserListClientResponseDTO[]> {
+    const users = await this.userRepository.listByClientActive();
+
+    return users.map(user => ({
+      id: user.id,
+      profile_id: user.profile_id,
+      username: user.username,
+      full_name: user.full_name,
+      status: user.status,
+    }));
   }
 
   // findAll() {

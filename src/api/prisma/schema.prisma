@@ -49,6 +49,7 @@ model User {
   Register_Items_Reciclados Register_Items_Reciclados[]
 
   @@map(name: "users")
+  Establishment Establishment[]
 }
 
 model Profile {
@@ -64,6 +65,7 @@ model Profile {
 }
 model Establishment {
   id            Int      @id() @default(autoincrement()) @db.UnsignedInt()
+  userId        Int?     @map("USER_ID") @db.UnsignedInt()
   name          String?   @db.VarChar(100)
   district      String   @db.VarChar(100)
   neighborhood  String   @db.VarChar(100)
@@ -74,9 +76,12 @@ model Establishment {
   score         Boolean?  @default(true)
   latitude      Float    @default(0.0) @db.Float
   longitude     Float   @default(0.0) @db.Float
+
+  user          User?  @relation(fields: [userId], references: [id])
   
   @@map(name: "Establishment")
   Record_Collection Record_Collection[]
+  
   Items Items[]
 }
 

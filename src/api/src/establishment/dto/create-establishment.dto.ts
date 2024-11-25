@@ -12,6 +12,14 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateEstablishmentDto {
   @ApiProperty({
+    type: Number,
+    required: true,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  userId: number;
+
+  @ApiProperty({
     type: String,
     required: true,
   })

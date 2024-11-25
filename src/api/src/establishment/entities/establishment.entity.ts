@@ -1,6 +1,7 @@
 import { Establishment } from '@prisma/client';
 
 export class EstablishmentEntity implements Establishment {
+  userId: number;
   id: number;
   number: number;
   name: string;

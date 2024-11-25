@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { EstablishmentModule } from './establishment/establishment.module';
 import { ItemsModule } from './items/items.module';
+import { RecordCollectionModule } from './record-collection/record-collection.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ItemsModule } from './items/items.module';
     AuthModule,
     EstablishmentModule,
     ItemsModule,
+    RecordCollectionModule,
   ],
   controllers: [],
   providers: [AppService],
