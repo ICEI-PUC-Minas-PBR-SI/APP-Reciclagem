@@ -25,11 +25,11 @@ export default function HomePage() {
       <ContainerPage>
         <Tabs.Container>
           <Tabs.Item
-            selected={selectedTab === "/index"}
-            onPress={() => handleNavigation("/index")}
+            selected={selectedTab === "/user"}
+            onPress={() => handleNavigation("/user")}
           >
-            <Tabs.Icon icon="♻️" selected={selectedTab === "/index"} />
-            <Tabs.Title title="Materiais" selected={selectedTab === "/index"} />
+            <Tabs.Icon icon="♻️" selected={selectedTab === "/user"} />
+            <Tabs.Title title="Materiais" selected={selectedTab === "/user"} />
           </Tabs.Item>
 
           <Tabs.Item
@@ -62,7 +62,7 @@ export default function HomePage() {
         </Tabs.Container>
         <MaterialsList />
       </ContainerPage>
-      <NavigationTabBar />
+      {/* <NavigationTabBar /> */}
     </ScrollView>
   );
 }
