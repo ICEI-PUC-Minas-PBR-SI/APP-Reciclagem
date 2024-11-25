@@ -102,6 +102,7 @@ model Record_Collection {
   id                     Int      @id() @default(autoincrement()) @db.UnsignedInt()
   EstablishmentId        Int @map("EstablishmentId_ID") @db.UnsignedInt()
   userId                 Int @map("USER_ID") @db.UnsignedInt()
+  amount                 Int
   material               String?   @db.VarChar(100)
   Measurement_Unit       String?   @db.VarChar(100)
   Collection_Date        DateTime? @map("birth_date") @db.Date
