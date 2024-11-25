@@ -1,4 +1,5 @@
 import { Profile, User } from '@prisma/client';
+import { EstablishmentEntity } from 'src/establishment/entities/establishment.entity';
 
 export enum Profiles {
   ADMINISTRATOR = 'ADMINISTRATOR',
@@ -24,6 +25,7 @@ export class UserEntity implements User {
   password: string;
 
   profile?: profileEntity;
+  Establishment?: EstablishmentEntity;
 }
 
 export class profileEntity implements Profile {

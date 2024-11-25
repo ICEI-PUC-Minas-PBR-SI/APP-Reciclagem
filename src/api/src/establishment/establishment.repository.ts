@@ -11,6 +11,7 @@ export class EstablishmentRepository {
   async create(create: CreateEstablishmentDto): Promise<EstablishmentEntity> {
     return await this.prisma.establishment.create({
       data: {
+        userId: create.userId,
         name: create.name,
         district: create.district,
         neighborhood: create.neighborhood,
