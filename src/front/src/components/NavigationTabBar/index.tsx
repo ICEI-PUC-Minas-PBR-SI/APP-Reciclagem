@@ -4,23 +4,25 @@ import { TabBarItem } from "./TabBarItem";
 import { useRouter } from "expo-router";
 import { logout } from "@/src/utils/auth";
 
+const ROUTES = {
+  home: "/user",
+  locals: "/user/locals",
+  materials: "/",
+};
+
 export const NavigationTabBar = () => {
-  const [selectedTab, setSelectedTab] = useState<string>("/");
+  const [selectedTab, setSelectedTab] = useState<string>(ROUTES.home);
   const router = useRouter();
 
   const handleNavigation = (page: string) => {
     setSelectedTab(page);
-
-    if (page == "/") {
-      router.replace(page);
-    }
     router.push(page);
   };
 
   const handleLogout = async () => {
     try {
-      await logout(); 
-      router.replace("/login"); 
+      await logout();
+      router.replace(ROUTES.home);
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
@@ -31,25 +33,25 @@ export const NavigationTabBar = () => {
       <TabBarItem
         icon="home"
         label="Início"
-        isSelected={selectedTab === "Início"}
-        onPress={() => handleNavigation("/")}
+        isSelected={selectedTab === ROUTES.home}
+        onPress={() => handleNavigation(ROUTES.home)}
       />
       <TabBarItem
         icon="map"
         label="Locais de Coleta"
-        isSelected={selectedTab === "Locais de Coleta"}
-        onPress={() => handleNavigation("/locals")}
+        isSelected={selectedTab === ROUTES.locals}
+        onPress={() => handleNavigation(ROUTES.locals)}
       />
       <TabBarItem
         icon="recycling"
         label="Materiais"
-        isSelected={selectedTab === "Materiais"}
-        onPress={() => handleNavigation("/materiais")}
+        isSelected={selectedTab === ROUTES.materials}
+        onPress={() => handleNavigation(ROUTES.materials)}
       />
       <TabBarItem
-        icon="logout" 
+        icon="logout"
         label="Sair"
-        isSelected={false} 
+        isSelected={false}
         onPress={handleLogout}
       />
     </TabBarContainer>

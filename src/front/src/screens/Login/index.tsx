@@ -1,7 +1,7 @@
 import { loginUser } from "@/src/services/api";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import {
   ContainerPage,
   FormSectionContainer,
@@ -13,6 +13,7 @@ import { ContainerButton, ContainerImg, Img } from "./style";
 import { DescriptionText, ErrorMensage } from "@/src/components/Texts";
 import DividerHorizontal from "@/src/components/Divider";
 import { ScrollView } from "react-native";
+import { checkToken } from "@/src/utils/auth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -28,7 +29,7 @@ const LoginPage = () => {
         const response = await loginUser({ email, password });
         await SecureStore.setItemAsync("Local_Token", response.access_token);
 
-        router.replace("/");
+        router.replace("/user");
       } catch (err) {
         console.log(err);
         setError("Houve um problema com o login, verifique suas credenciais!");

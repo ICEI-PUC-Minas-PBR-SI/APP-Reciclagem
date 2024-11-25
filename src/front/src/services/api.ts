@@ -22,7 +22,7 @@ export const createUser = async (userData: any) => {
   }
 };
 
-export const createEstablishment = async (establishmentData: DataEstablishmentForm) => {
+export const createEstablishment = async (establishmentData: any) => {
   try {
     const response = await api.post("/establishment", establishmentData);
     return response.data;

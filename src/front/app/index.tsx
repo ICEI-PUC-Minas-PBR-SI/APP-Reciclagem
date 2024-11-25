@@ -1,10 +1,7 @@
-import HomePage from "@/src/screens/Home";
-import { Link } from "expo-router";
-import { useState } from "react";
-import { View } from "react-native";
+import Maps from "@/src/components/Maps";
+import LoginPage from "@/src/screens/Login";
+import { Text, View } from "react-native";
 
 export default function Index() {
-  const [value, setValue] = useState<string>("");
-
-  return <HomePage />;
+  return <LoginPage />;
 }

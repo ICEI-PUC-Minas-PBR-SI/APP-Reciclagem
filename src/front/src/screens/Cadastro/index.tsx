@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, Text } from "react-native";
 import styled from "styled-components/native";
-import {
-  useForm,
-  Controller,
-  FormProvider,
-  useFormContext,
-} from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import {
   ContainerPage,
   FormSectionContainer,
 } from "@/src/components/Containers";
 import TitlePage from "@/src/components/TitlePage/inde";
-import SimpleInput from "@/src/components/Input/SimpleInput";
 import Button from "@/src/components/Button";
 import ToggleButtonGroup from "../Register/components/ToggleButtonGroup";
 import UserForm from "./Forms/UserForm";
@@ -20,14 +14,15 @@ import DividerHorizontal from "@/src/components/Divider";
 import ClientForm from "./Forms/ClientForm";
 import AdressForm from "./Forms/AdressForm";
 import MapForm from "./Forms/MapForm";
-import useLocation from "@/src/hooks/useLocation";
-import EstablishmentForm from "./Forms/EstablishmentForm";
 import MaterialsAndScoreSection from "./Forms/MaterialsAndScoreSection";
 import {
   getCurrentPositionAsync,
   LocationAccuracy,
   requestForegroundPermissionsAsync,
 } from "expo-location";
+import { createEstablishment, createUser } from "@/src/services/api";
+import { router } from "expo-router";
+import EstablishmentForm from "./Forms/EstablishmentForm";
 
 const FormContainer = styled.View`
   gap: 18px;
@@ -67,7 +62,7 @@ interface FormData {
 }
 
 const Cadastro = () => {
-  const [activeProfile, setActiveProfile] = useState<"CLIENT" | "COLETOR">(
+  const [activeProfile, setActiveProfile] = useState<"CLIENT" | "COLLECTOR">(
     "CLIENT"
   );
 
@@ -137,8 +132,68 @@ const Cadastro = () => {
   }, []);
 
   const onSubmit = (data: FormData) => {
-    console.log("Form Data:", data);
-    alert(`Form Data Submitted: ${JSON.stringify(data)}`);
+    try {
+      if (activeProfile == "CLIENT") {
+        const user = {
+          profile_name: "CLIENT",
+          full_name: data.client.fullName,
+          email: data.user.email,
+          username: data.user.username,
+          number: data.adress.number,
+          cep: data.adress.cep,
+          street: data.adress.street,
+          state: data.adress.state,
+          city: data.adress.city,
+          phone: data.client.phone,
+          status: true,
+          password: data.user.password,
+          latitude: data.map.latitude,
+          longitude: data.map.longitude,
+        };
+        const response = createUser(user);
+        // router.navigate("/login");
+      }
+
+      if (activeProfile == "COLLECTOR") {
+        const cleanCep = data.adress.cep.replace(/\D/g, "");
+        const user = {
+          profile_name: "COLLECTOR",
+          full_name: data.establishment.name,
+          email: data.user.email,
+          username: data.user.username,
+          number: data.adress.number,
+          cep: data.adress.cep,
+          street: data.adress.street,
+          state: data.adress.state,
+          city: data.adress.city,
+          phone: data.establishment.phone,
+          status: true,
+          password: data.user.password,
+          latitude: data.map.latitude,
+          longitude: data.map.longitude,
+        };
+        const responseUser = createUser(user);
+
+        const establishment = {
+          name: data.establishment.name,
+          district: data.adress.city,
+          neighborhood: data.adress.street,
+          number: Number(data.adress.number),
+          phone: data.establishment.phone,
+          product: data.establishment.product,
+          score: data.establishment.score,
+          cep: Number(cleanCep),
+          latitude: data.map.latitude,
+          longitude: data.map.longitude,
+        };
+
+        const responseEsta = createEstablishment(establishment);
+        router.navigate("/");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+      Alert.alert("Erro", "Não foi possível concluir o cadastro.");
+    }
   };
 
   return (
@@ -174,7 +229,6 @@ const Cadastro = () => {
             )}
           </FormContainer>
 
-          <Text>Dados Monitorados: {JSON.stringify(watch(), null, 2)}</Text>
           <Button
             title="Cadastrar"
             theme="primary"

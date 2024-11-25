@@ -7,7 +7,7 @@ import {
   requestForegroundPermissionsAsync,
 } from "expo-location";
 import React, { useEffect, useState } from "react";
-import { View, Text, Alert } from "react-native";
+import { View, Text, Alert, ScrollView } from "react-native";
 import LocalsList from "./LocalsList";
 import { TitleH2 } from "@/src/components/Texts";
 import { getEstabelecimentos } from "@/src/services/api";
@@ -70,27 +70,29 @@ const LocalsPage = () => {
   }, []);
 
   return (
-    <ContainerPage>
-      <View style={{ borderRadius: 20, gap: 16 }}>
-        <TitleH2>🏭 Locais de Coleta</TitleH2>
-        {location ? (
-          <MapsLocals
-            latitude={location.coords.latitude}
-            longitude={location.coords.longitude}
-            establishments={estabelecimentos}
-            focusedPoint={focusedPoint}
-          />
-        ) : (
-          <Text>Carregando mapa...</Text>
-        )}
-      </View>
-      <LocalsList
-        estabelecimentos={estabelecimentos}
-        onSelect={(latitude, longitude) =>
-          setFocusedPoint({ latitude, longitude })
-        }
-      />
-    </ContainerPage>
+    <ScrollView style={{ flex: 1 }}>
+      <ContainerPage>
+        <View style={{ borderRadius: 20, gap: 16 }}>
+          <TitleH2>🏭 Locais de Coleta</TitleH2>
+          {location ? (
+            <MapsLocals
+              latitude={location.coords.latitude}
+              longitude={location.coords.longitude}
+              establishments={estabelecimentos}
+              focusedPoint={focusedPoint}
+            />
+          ) : (
+            <Text>Carregando mapa...</Text>
+          )}
+        </View>
+        <LocalsList
+          estabelecimentos={estabelecimentos}
+          onSelect={(latitude, longitude) =>
+            setFocusedPoint({ latitude, longitude })
+          }
+        />
+      </ContainerPage>
+    </ScrollView>
   );
 };
 

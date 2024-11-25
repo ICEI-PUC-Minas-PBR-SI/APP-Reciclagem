@@ -12,7 +12,7 @@ interface MapsLocalsProps {
   latitude: number;
   longitude: number;
   establishments: {
-    id: string;
+    id: number;
     latitude: number;
     longitude: number;
     name: string;
@@ -34,13 +34,17 @@ const MapsLocals: React.FC<MapsLocalsProps> = ({
         {
           latitude: focusedPoint.latitude,
           longitude: focusedPoint.longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
         },
         500
       );
     }
   }, [focusedPoint]);
+
+  const validEstablishments = establishments.filter(
+    (item) => item.latitude !== 0 && item.longitude !== 0
+  );
 
   return (
     <Container>
@@ -50,8 +54,8 @@ const MapsLocals: React.FC<MapsLocalsProps> = ({
         region={{
           latitude,
           longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
         }}
       >
         <Marker
@@ -63,7 +67,7 @@ const MapsLocals: React.FC<MapsLocalsProps> = ({
           pinColor={"blue"}
         />
 
-        {establishments.map((item) => (
+        {validEstablishments.map((item) => (
           <Marker
             key={item.id}
             coordinate={{

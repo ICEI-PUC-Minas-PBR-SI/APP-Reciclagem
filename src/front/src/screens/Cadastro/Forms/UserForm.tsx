@@ -27,9 +27,6 @@ const UserForm = () => {
         rules={{
           required: "Nome de usuário é obrigatório",
           validate: (value) => {
-            if (/[A-Z]/.test(value)) {
-              return "O nome de usuário não pode conter letras maiúsculas";
-            }
             if (/\s/.test(value)) {
               return "O nome de usuário não pode conter espaços";
             }
