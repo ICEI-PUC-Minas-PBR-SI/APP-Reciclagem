@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, IsDate } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateRecordCollectionDto {
@@ -22,6 +22,14 @@ export class CreateRecordCollectionDto {
   userId: number;
 
   @ApiProperty({
+    type: Number,
+    required: true,
+  })
+  @IsNumber()
+  @IsNotEmpty()
+  amount: number;
+
+  @ApiProperty({
     type: String,
     required: true,
     description: 'Type of material collected',
@@ -38,13 +46,4 @@ export class CreateRecordCollectionDto {
   @IsString()
   @IsNotEmpty()
   Measurement_Unit: string;
-
-  @ApiProperty({
-    type: Date,
-    required: true,
-    description: 'Date when the collection was made',
-  })
-  @IsDate()
-  @IsNotEmpty()
-  Collection_Date: Date;
 }

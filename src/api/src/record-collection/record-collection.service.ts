@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RecordCollectionRepository } from './record-collection.repository';
 import { CreateRecordCollectionDto } from './dto/create-record-collection.dto';
+import { RecordCollectionResponseDTO } from './dto/record-collection.response.dto';
 
 @Injectable()
 export class RecordCollectionService {
@@ -8,21 +9,9 @@ export class RecordCollectionService {
     private readonly recordCollectionRepository: RecordCollectionRepository,
   ) {}
 
-  async create(data: CreateRecordCollectionDto) {
+  async create(
+    data: CreateRecordCollectionDto,
+  ): Promise<RecordCollectionResponseDTO> {
     return this.recordCollectionRepository.create(data);
   }
-
-  // async getById(id: number): Promise<EstablishmentResponseDto> {
-  //   const result = await this.establishmentRepository.getById(id);
-
-  //   if (!result) {
-  //     throw new NotFoundException('establishment not found');
-  //   }
-
-  //   return result;
-  // }
-
-  // async list(): Promise<EstablishmentListResponseDto[]> {
-  //   return this.establishmentRepository.list();
-  // }
 }

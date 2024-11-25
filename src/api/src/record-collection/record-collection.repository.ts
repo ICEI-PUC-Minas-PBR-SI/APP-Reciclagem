@@ -14,9 +14,10 @@ export class RecordCollectionRepository {
       data: {
         EstablishmentId: create.EstablishmentId,
         userId: create.userId,
+        amount: create.amount,
         material: create.material,
         Measurement_Unit: create.Measurement_Unit,
-        Collection_Date: create.Collection_Date,
+        Collection_Date: new Date(),
       },
     });
   }

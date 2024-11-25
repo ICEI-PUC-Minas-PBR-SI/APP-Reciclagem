@@ -7,6 +7,7 @@ export class RecordCollectionEntity implements Record_Collection {
   EstablishmentId: number;
   userId: number;
   material: string;
+  amount: number;
   Measurement_Unit: string;
   Collection_Date: Date;
 
