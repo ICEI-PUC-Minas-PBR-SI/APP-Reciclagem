@@ -1,5 +1,8 @@
 # Template padrão do site
 
+Link para projeto completo figma: https://www.figma.com/design/JxeJg8O1MyWIWgzcgbhmWH/App-de-Reciclagem?node-id=3-2253&t=TDzfJP1lJC9WvtHK-1
+
+
 ## Telas de Cadastro
 
 <img width="1032" alt="Frame 427318935" src="https://github.com/user-attachments/assets/432aea0c-fb79-422b-bf64-1e4e00062e0d">
