@@ -1,12 +1,16 @@
 # Template padrão do site
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="4-Metodologia.md"> Metodologia</a>
+## Telas de Cadastro
+<img width="1032" alt="Frame 427318935" src="https://github.com/user-attachments/assets/432aea0c-fb79-422b-bf64-1e4e00062e0d">
 
-Layout padrão do site (HTML e CSS) que será utilizado em todas as páginas com a definição de identidade visual, aspectos de responsividade e iconografia.
+##Tela de Login
+<img width="440" alt="Cadastro Usuário Reciclador" src="https://github.com/user-attachments/assets/df681de6-87f1-4f6b-82e1-f03b8ee4b341">
 
-> **Links Úteis**:
->
-> - [CSS Website Layout (W3Schools)](https://www.w3schools.com/css/css_website_layout.asp)
-> - [Website Page Layouts](http://www.cellbiol.com/bioinformatics_web_development/chapter-3-your-first-web-page-learning-html-and-css/website-page-layouts/)
-> - [Perfect Liquid Layout](https://matthewjamestaylor.com/perfect-liquid-layouts)
-> - [How and Why Icons Improve Your Web Design](https://usabilla.com/blog/how-and-why-icons-improve-you-web-design/)
+## telas Iniciais (cliente e estabeleciemnto)
+<img width="1043" alt="Frame 427318934 (1)" src="https://github.com/user-attachments/assets/6b7e6ca9-ef2f-44e5-a7c8-fb78d930c646">
+
+## Tela de Locais de Coleta
+<img width="430" alt="Locais de Coleta" src="https://github.com/user-attachments/assets/79d3e88c-4a30-4cc6-84b2-964c3600caa2">
+
+## Registro de Coleta (apenas para estabelecimentos)
+<img width="440" alt="Registrar Coleta" src="https://github.com/user-attachments/assets/ebab422d-7fa9-4525-b2f2-111da76db2d1">
