@@ -6,6 +6,6 @@ Liste os arquivos produzidos e postados nesta pasta, com suas localizaçãoes e 
 
 
 * [Pitch inicial](./sample-pitch.pdf) -- arquivo com os slides da apresentação inicial
-* [Apresentação final](./sample-presentation.pdf) -- arquivo com os slides da apresentação final
+* [Apresentação final](./sample-presentation.pdf) -- arquivo com os slides da apresentação final: https://github.com/ICEI-PUC-Minas-PBR-SI/APP-Reciclagem/blob/main/presentation/App%20Reciclagem%20-%20Apresenta%C3%A7%C3%A3o.pdf
 * [Vídeo de demonstração](./sample-video.mp4) -- arquivo com a demonstração do funcionamento do sistema
 
